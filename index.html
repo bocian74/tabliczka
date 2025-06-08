@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
     <!-- iOS Fullscreen -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,6 +15,7 @@
       margin: 0;
       font-family: Arial, sans-serif;
       background-color: #e6f2ff;
+	  overflow: hidden;
     }
 
     body {
@@ -422,6 +424,8 @@ function renderDots(rows, cols) {
       submitBtn.disabled = false;
       nextBtn.disabled = true;
       answerEl.disabled = false;
+	  feedbackEl.textContent = ""
+	  answerEl.style.color = "black";
       answerEl.focus();
       colorDots("black");
       startTimer();
@@ -459,6 +463,7 @@ function renderDots(rows, cols) {
 			feedbackEl.textContent = "CORRECT!";
 			feedbackEl.className = "correct-input";
 			answerEl.className = "correct-input";
+			answerEl.style.color = "green";
 			playSound("correct");
 			colorDots("green");
 			correctCount++;
@@ -466,6 +471,7 @@ function renderDots(rows, cols) {
 			feedbackEl.textContent = "WRONG!";
 			feedbackEl.className = "wrong-input";
 			answerEl.className = "wrong-input";
+			answerEl.style.color = "red";
 			playSound("wrong");
 			colorDots("red");
 			wrongCount++;
@@ -476,6 +482,7 @@ function renderDots(rows, cols) {
 			feedbackEl.textContent = "DOBRZE!";
 			feedbackEl.className = "correct-input";
 			answerEl.className = "correct-input";
+			answerEl.style.color = "green";
 			playSound("correct");
 			colorDots("green");
 			correctCount++;
@@ -483,6 +490,7 @@ function renderDots(rows, cols) {
 			feedbackEl.textContent = "ŹLE!";
 			feedbackEl.className = "wrong-input";
 			answerEl.className = "wrong-input";
+			answerEl.style.color = "red";
 			playSound("wrong");
 			colorDots("red");
 			wrongCount++;
@@ -517,6 +525,7 @@ function renderDots(rows, cols) {
 			feedbackEl.textContent = "CORRECT!";
 			feedbackEl.className = "correct-input";
 			answerEl.className = "correct-input";
+			answerEl.style.color = "green";
 			playSound("correct");
 			colorDots("green");
 			correctCount++;
@@ -524,6 +533,7 @@ function renderDots(rows, cols) {
 			feedbackEl.textContent = "Time's up!";
 			feedbackEl.className = "wrong-input";
 			answerEl.className = "wrong-input";
+			answerEl.style.color = "red";
 			playSound("wrong");
 			colorDots("red");
 			wrongCount++;
@@ -534,6 +544,7 @@ function renderDots(rows, cols) {
 			feedbackEl.textContent = "DOBRZE!";
 			feedbackEl.className = "correct-input";
 			answerEl.className = "correct-input";
+			answerEl.style.color = "green";
 			playSound("correct");
 			colorDots("green");
 			correctCount++;
@@ -541,6 +552,7 @@ function renderDots(rows, cols) {
 			feedbackEl.textContent = "Brak odpowiedzi!";
 			feedbackEl.className = "wrong-input";
 			answerEl.className = "wrong-input";
+			answerEl.style.color = "red";
 			playSound("wrong");
 			colorDots("red");
 			wrongCount++;
