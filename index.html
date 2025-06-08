@@ -222,8 +222,8 @@
     </div>
   </div>
 
-  <audio id="soundCorrect" src="correct.mp3"></audio>
-  <audio id="soundWrong" src="wrong.mp3"></audio>
+  <audio id="soundCorrect" src="correct.mp3" preload="auto"></audio>
+  <audio id="soundWrong" src="wrong.mp3" preload="auto"></audio>
 
   <script>
     let correctCount = 0;
@@ -440,13 +440,13 @@ function renderDots(rows, cols) {
 		  if (userAnswer === correctAnswer) {
 			answerEl.value = `${userAnswer} CORRECT!`;
 			answerEl.className = "correct-input";
-			playSound("correct");
+			//playSound("correct");
 			colorDots("green");
 			correctCount++;
 		  } else {
 			answerEl.value = `${userAnswer} WRONG!`;
 			answerEl.className = "wrong-input";
-			playSound("wrong");
+			//playSound("wrong");
 			colorDots("red");
 			wrongCount++;
 		  }
@@ -455,13 +455,13 @@ function renderDots(rows, cols) {
 			if (userAnswer === correctAnswer) {
 			answerEl.value = `${userAnswer} DOBRZE!`;
 			answerEl.className = "correct-input";
-			playSound("correct");
+			//playSound("correct");
 			colorDots("green");
 			correctCount++;
 		  } else {
 			answerEl.value = `${userAnswer} ŹLE!`;
 			answerEl.className = "wrong-input";
-			playSound("wrong");
+			//playSound("wrong");
 			colorDots("red");
 			wrongCount++;
 		  }
@@ -494,13 +494,13 @@ function renderDots(rows, cols) {
 		  if (userAnswer === correctAnswer) {
 			answerEl.value = `CORRECT!`;
 			answerEl.className = "correct-input";
-			playSound("correct");
+			//playSound("correct");
 			colorDots("green");
 			correctCount++;
 		  } else {
 			answerEl.value = `Time's up!`;
 			answerEl.className = "wrong-input";
-			playSound("wrong");
+			//playSound("wrong");
 			colorDots("red");
 			wrongCount++;
 		  }
@@ -509,13 +509,13 @@ function renderDots(rows, cols) {
 			if (userAnswer === correctAnswer) {
 			answerEl.value = `DOBRZE!`;
 			answerEl.className = "correct-input";
-			playSound("correct");
+			//playSound("correct");
 			colorDots("green");
 			correctCount++;
 		  } else {
 			answerEl.value = `Czas minął!`;
 			answerEl.className = "wrong-input";
-			playSound("wrong");
+			//playSound("wrong");
 			colorDots("red");
 			wrongCount++;
 		  }
@@ -529,7 +529,15 @@ function renderDots(rows, cols) {
       clearInterval(timerInterval);
     }
 	
-	
+	function playSound(type) {
+  if (!document.getElementById("enableSounds").checked) return;
+  const sound = type === "correct" ? document.getElementById("soundCorrect") : document.getElementById("soundWrong");
+  if (sound) {
+    sound.currentTime = 0;
+    sound.play().catch(err => console.log("Playback prevented:", err));
+  }
+}
+
 
     submitBtn.addEventListener("click", () => autoSubmit(true));
     nextBtn.addEventListener("click", generateQuestion);
