@@ -50,7 +50,7 @@
       margin-bottom: 20px;
     }
 
-    input[type="text"] {
+    input[type="number"] {
       font-size: 50px;
       padding: 5px;
       margin: 5px;
@@ -62,6 +62,12 @@
       font-size: 15px;
       padding: 3px 3px;
       margin: 3px;
+    }
+	
+	    #feedback {
+      min-height: 40px;
+      font-size: 28px;
+      margin: 10px;
     }
 
     .button-row {
@@ -169,7 +175,8 @@
       <div>
         <div id="question">Loading...</div>
 
-        <input type="text" id="answer" placeholder="?" />
+    	<input type="number" id="answer" placeholder="?" inputmode="numeric" />
+		<div id="feedback"></div>
 
         <div class="button-row">
           <button id="submitBtn">Submit</button>
@@ -251,6 +258,8 @@
     const dotContainer = document.getElementById("dotContainer");
     const maxResultSelect = document.getElementById("maxResultSelect");
     const timerSelect = document.getElementById("timerSelect");
+	const feedbackEl = document.getElementById("feedback");
+
 
     const translations = {
       en: {
@@ -447,13 +456,15 @@ function renderDots(rows, cols) {
 	 
 	if (currentLang==="en") {
 		  if (userAnswer === correctAnswer) {
-			answerEl.value = `${userAnswer} CORRECT!`;
+			feedbackEl.textContent = "CORRECT!";
+			feedbackEl.className = "correct-input";
 			answerEl.className = "correct-input";
 			playSound("correct");
 			colorDots("green");
 			correctCount++;
 		  } else {
-			answerEl.value = `${userAnswer} WRONG!`;
+			feedbackEl.textContent = "WRONG!";
+			feedbackEl.className = "wrong-input";
 			answerEl.className = "wrong-input";
 			playSound("wrong");
 			colorDots("red");
@@ -462,13 +473,15 @@ function renderDots(rows, cols) {
 		}
 		else {
 			if (userAnswer === correctAnswer) {
-			answerEl.value = `${userAnswer} DOBRZE!`;
+			feedbackEl.textContent = "DOBRZE!";
+			feedbackEl.className = "correct-input";
 			answerEl.className = "correct-input";
 			playSound("correct");
 			colorDots("green");
 			correctCount++;
 		  } else {
-			answerEl.value = `${userAnswer} ŹLE!`;
+			feedbackEl.textContent = "ŹLE!";
+			feedbackEl.className = "wrong-input";
 			answerEl.className = "wrong-input";
 			playSound("wrong");
 			colorDots("red");
@@ -486,7 +499,7 @@ function renderDots(rows, cols) {
 	
 	
 	
-	function autoSubmit2(isManual = true) {
+    function autoSubmit2(isManual = true) {
       if (submitBtn.disabled) return;
       const correctAnswer = currentA * currentB;
       const userAnswer = parseInt(answerEl.value, 10);
@@ -501,13 +514,15 @@ function renderDots(rows, cols) {
 	 
 	if (currentLang==="en") {
 		  if (userAnswer === correctAnswer) {
-			answerEl.value = `CORRECT!`;
+			feedbackEl.textContent = "CORRECT!";
+			feedbackEl.className = "correct-input";
 			answerEl.className = "correct-input";
 			playSound("correct");
 			colorDots("green");
 			correctCount++;
 		  } else {
-			answerEl.value = `Time's up!`;
+			feedbackEl.textContent = "Time's up!";
+			feedbackEl.className = "wrong-input";
 			answerEl.className = "wrong-input";
 			playSound("wrong");
 			colorDots("red");
@@ -516,13 +531,15 @@ function renderDots(rows, cols) {
 		}
 		else {
 			if (userAnswer === correctAnswer) {
-			answerEl.value = `DOBRZE!`;
+			feedbackEl.textContent = "DOBRZE!";
+			feedbackEl.className = "correct-input";
 			answerEl.className = "correct-input";
 			playSound("correct");
 			colorDots("green");
 			correctCount++;
 		  } else {
-			answerEl.value = `Czas minął!`;
+			feedbackEl.textContent = "Brak odpowiedzi!";
+			feedbackEl.className = "wrong-input";
 			answerEl.className = "wrong-input";
 			playSound("wrong");
 			colorDots("red");
